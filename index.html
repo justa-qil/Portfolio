@@ -7023,353 +7023,45 @@ body.dark .organizationDetailSection h4 {
     transition-delay: 0.45s;
 }
 
-/* =========================================================
-   PREMIUM CARD HOVER ANIMATION
-========================================================= */
-
-/* Experience */
-.experienceItem .experienceContent {
-    transition:
-        box-shadow .35s ease,
-        border-color .35s ease;
-}
-
-.experienceItem:hover .experienceContent {
-    box-shadow: 0 18px 45px rgba(20, 35, 63, .14);
-}
-
-
-/* Organization */
-.organizationCard {
-    transition:
-        transform .35s ease,
-        box-shadow .35s ease,
-        border-color .35s ease;
-}
-
-.organizationCard:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 42px rgba(20, 35, 63, .15);
-}
-
-
-/* Skills */
-.skillsGrid > .card {
-    transition:
-        transform .35s ease,
-        box-shadow .35s ease,
-        border-color .35s ease;
-}
-
-.skillsGrid > .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 42px rgba(20, 35, 63, .13);
-}
-
-
-/* Skill bubbles */
-.skillsGrid .pill,
-.skillsGrid span {
-    transition:
-        transform .22s ease,
-        background-color .22s ease;
-}
-
-.skillsGrid .pill:hover,
-.skillsGrid span:hover {
-    transform: translateY(-2px);
-}
-
-
-/* Organization tags */
-.organizationTags span {
-    transition:
-        transform .22s ease,
-        background-color .22s ease;
-}
-
-.organizationTags span:hover {
-    transform: translateY(-2px);
-}
-
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .experienceItem,
-    .experienceItem .experienceContent,
-    .organizationCard,
-    .skillsGrid > .card,
-    .skillsGrid .pill,
-    .skillsGrid span,
-    .organizationTags span {
-        transition: none !important;
-        transform: none !important;
-    }
-}
+    
 
 /* =========================================================
-   PREMIUM PHOTO SHINE / LIGHT SWEEP
+   PROJECT 06 — PKM GALLERY
 ========================================================= */
-
-/* Organization photos */
-.organizationImage {
-    position: relative;
+.pkmGallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 180px 180px;
+    gap: 10px;
+    margin: 22px 0 28px;
+}
+.pkmGallery a {
+    display: block;
+    min-width: 0;
     overflow: hidden;
+    border-radius: 16px;
 }
-
-.organizationImage::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 45%;
+.pkmGallery img {
+    width: 100%;
     height: 100%;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.28),
-        transparent
-    );
-
-    transform: skewX(-18deg);
-    pointer-events: none;
+    object-fit: cover;
+    display: block;
+    transition: transform .3s ease, opacity .3s ease;
 }
-
-.organizationCard:hover .organizationImage::after {
-    animation: photoShine .8s ease;
+.pkmGallery a:hover img {
+    transform: scale(1.03);
+    opacity: .92;
 }
-
-
-/* Experience photos */
-.experienceGallery img {
-    position: relative;
-}
-
-
-/* Project photos */
-.deckMedia {
-    overflow: hidden;
-}
-
-.deckMedia::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 45%;
-    height: 100%;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.24),
-        transparent
-    );
-
-    transform: skewX(-18deg);
-    pointer-events: none;
-}
-
-.projectDeckCard.active:hover .deckMedia::after {
-    animation: photoShine .8s ease;
-}
-
-
-/* Shine animation */
-@keyframes photoShine {
-    0% {
-        left: -75%;
-    }
-
-    100% {
-        left: 135%;
+@media (max-width: 650px) {
+    .pkmGallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 190px);
     }
 }
-
-
-/* Dark mode — slightly stronger shine */
-body.dark .organizationImage::after,
-body.dark .deckMedia::after {
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.18),
-        transparent
-    );
-}
-
-
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    .organizationCard:hover .organizationImage::after,
-    .projectDeckCard.active:hover .deckMedia::after {
-        animation: none !important;
-    }
+    .pkmGallery img { transition: none; }
 }
-
-/* =========================
-   SKILLS STAGGER ANIMATION
-   ========================= */
-
-.skillsGrid > .card span {
-    opacity: 0;
-    transform: translateY(12px);
-    transition:
-        opacity 0.45s ease,
-        transform 0.45s ease;
-}
-
-.skillsGrid > .card.skills-ready span {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Muncul bergantian */
-.skillsGrid > .card.skills-ready span:nth-child(1) { transition-delay: 0.05s; }
-.skillsGrid > .card.skills-ready span:nth-child(2) { transition-delay: 0.10s; }
-.skillsGrid > .card.skills-ready span:nth-child(3) { transition-delay: 0.15s; }
-.skillsGrid > .card.skills-ready span:nth-child(4) { transition-delay: 0.20s; }
-.skillsGrid > .card.skills-ready span:nth-child(5) { transition-delay: 0.25s; }
-.skillsGrid > .card.skills-ready span:nth-child(6) { transition-delay: 0.30s; }
-.skillsGrid > .card.skills-ready span:nth-child(7) { transition-delay: 0.35s; }
-.skillsGrid > .card.skills-ready span:nth-child(8) { transition-delay: 0.40s; }
-
-@media (prefers-reduced-motion: reduce) {
-    .skillsGrid > .card span {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
-}
-
-/* =========================
-   CONTACT PREMIUM ANIMATION
-   ========================= */
-
-.contactSection .card,
-.contactSection .contactCard {
-    transition:
-        transform 0.35s ease,
-        box-shadow 0.35s ease,
-        border-color 0.35s ease;
-}
-
-.contactSection .card:hover,
-.contactSection .contactCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 42px rgba(20, 35, 63, 0.14);
-}
-
-/* Social/contact buttons */
-.contactSection a {
-    transition:
-        transform 0.25s ease,
-        opacity 0.25s ease,
-        background-color 0.25s ease;
-}
-
-.contactSection a:hover {
-    transform: translateY(-3px);
-}
-
-/* Contact heading */
-.contactSection h2 {
-    transition: letter-spacing 0.4s ease;
-}
-
-.contactSection h2:hover {
-    letter-spacing: 0.04em;
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .contactSection .card,
-    .contactSection .contactCard,
-    .contactSection a,
-    .contactSection h2 {
-        transition: none !important;
-        transform: none !important;
-    }
-}
-
-/* CONTACT HEADER ALIGNMENT */
-.contactSection .sectionHead {
-    width: min(1180px, 90%);
-    margin: 0 auto 35px;
-}
-
-/* =========================
-   HERO TYPING ANIMATION
-   ========================= */
-
-.heroTyping {
-    min-height: 2.1em;
-}
-
-.typingCursor {
-    display: inline-block;
-    margin-left: 4px;
-    font-weight: 400;
-    animation: typingBlink 0.8s infinite;
-}
-
-@keyframes typingBlink {
-    0%,
-    45% {
-        opacity: 1;
-    }
-
-    46%,
-    100% {
-        opacity: 0;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .typingCursor {
-        animation: none;
-    }
-}
-
-/* =========================
-   ABOUT TYPING ANIMATION
-   ========================= */
-
-.aboutTyping {
-    min-height: 145px;
-}
-
-.aboutTyping::after {
-    content: "|";
-    display: inline-block;
-    margin-left: 3px;
-    animation: aboutCursor 0.8s infinite;
-}
-
-@keyframes aboutCursor {
-    0%,
-    45% {
-        opacity: 1;
-    }
-
-    46%,
-    100% {
-        opacity: 0;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .aboutTyping::after {
-        animation: none;
-    }
-}
-
-p {
-    text-align: justify;
-}
-
-    </style>
+</style>
 </head>
 
 
@@ -7549,9 +7241,10 @@ p {
                         Aqil Pujakesuma
                     </h1>
 
-                    <h2 class="heroTyping">
-    <span id="typingText"></span><span class="typingCursor">|</span>
-</h2>
+                    <h2>
+                        Electrical Engineering<br>
+                        Student
+                    </h2>
 
                     <p class="lead">
                         Electrical Engineering undergraduate at Telkom University
@@ -7600,11 +7293,11 @@ p {
 
             <div class="sectionHead">
 
-                <h2 class="reveal">
+                <h2>
                     Hi, I'm Aqil.
                 </h2>
 
-                <p class="reveal">
+                <p>
                     Electrical engineering student building practical experience
                     through field work, manufacturing projects, simulations,
                     testing, and technical design.
@@ -7631,7 +7324,14 @@ p {
                         Electrical Engineering Student | Telkom University
                     </h3>
 
-                    <p class="aboutTyping" id="aboutTyping"></p>
+                    <p>
+                        I am developing practical skills in electrical systems,
+                        power distribution, wiring, testing, troubleshooting,
+                        instrumentation, and engineering documentation.
+                        I am especially interested in industrial and energy
+                        environments where electrical engineering is applied
+                        directly in the field.
+                    </p>
 
 
                     <div class="contactMini">
@@ -7737,7 +7437,7 @@ rel="noopener noreferrer"
 
        <h2 class="reveal">Experience</h2>
 
-        <p class="reveal">
+        <p>
             Practical experience developed through industrial
             internships, electrical engineering, manufacturing,
             quality control, testing, and technical activities.
@@ -8455,7 +8155,7 @@ id="experienceHariffManufacturing">
         Projects
     </h2>
 
-        <p class="reveal">
+        <p>
             Selected electrical engineering projects covering control,
             instrumentation, electrical distribution, and industrial
             automation.
@@ -8490,7 +8190,7 @@ id="experienceHariffManufacturing">
             <div class="deckBody">
 
                 <div class="deckNumber">
-                    PROJECT 01 / 05
+                    PROJECT 01 / 06
                 </div>
 
                 <div class="kicker">
@@ -8555,7 +8255,7 @@ id="experienceHariffManufacturing">
             <div class="deckBody">
 
                 <div class="deckNumber">
-                    PROJECT 02 / 05
+                    PROJECT 02 / 06
                 </div>
 
                 <div class="kicker">
@@ -8620,7 +8320,7 @@ id="experienceHariffManufacturing">
             <div class="deckBody">
 
                 <div class="deckNumber">
-                    PROJECT 03 / 05
+                    PROJECT 03 / 06
                 </div>
 
                 <div class="kicker">
@@ -8685,7 +8385,7 @@ id="experienceHariffManufacturing">
             <div class="deckBody">
 
                 <div class="deckNumber">
-                    PROJECT 04 / 05
+                    PROJECT 04 / 06
                 </div>
 
                 <div class="kicker">
@@ -8750,7 +8450,7 @@ id="experienceHariffManufacturing">
             <div class="deckBody">
 
                 <div class="deckNumber">
-                    PROJECT 05 / 05
+                    PROJECT 05 / 06
                 </div>
 
                 <div class="kicker">
@@ -8789,6 +8489,55 @@ id="experienceHariffManufacturing">
                     View Project ↗
                 </button>
 
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 06 -->
+        <div
+            class="projectDeckCard"
+            data-index="5"
+            onclick="selectProjectCard(5)"
+        >
+
+            <div class="deckMedia">
+                <img
+                    src="assets/pkm-01.jpeg"
+                    alt="Community Service Project — Functional Water Irrigation System"
+                >
+            </div>
+
+            <div class="deckBody">
+                <div class="deckNumber">
+                    PROJECT 06 / 06
+                </div>
+
+                <div class="kicker">
+                    MARCH – AUGUST 2026
+                </div>
+
+                <h3>
+                    Functional Water Irrigation System
+                    (Water Ionizer)
+                </h3>
+
+                <p>
+                    Community Service Project — Electrical Engineering
+                </p>
+
+                <div class="deckTools">
+                    <span class="deckTool">Water Ionizer</span>
+                    <span class="deckTool">Irrigation System</span>
+                    <span class="deckTool">Appropriate Technology</span>
+                </div>
+
+                <button
+                    class="deckView"
+                    onclick="event.stopPropagation(); openProject('pkmProject')"
+                >
+                    View Project ↗
+                </button>
             </div>
 
         </div>
@@ -8856,6 +8605,13 @@ id="experienceHariffManufacturing">
                 aria-label="Project 5"
             ></button>
 
+            <button
+                class="projectCarouselDot"
+                type="button"
+                data-project="5"
+                aria-label="Project 6"
+            ></button>
+
         </div>
 
 
@@ -8875,7 +8631,7 @@ id="experienceHariffManufacturing">
         class="projectCarouselCounter"
         id="projectCarouselCounter"
     >
-        PROJECT 01 / 05
+        PROJECT 01 / 06
     </div>
 
 
@@ -8901,7 +8657,7 @@ id="experienceHariffManufacturing">
 </h2>
         </div>
 
-        <p class="reveal">
+        <p>
             Leadership, teamwork, and experiences beyond
             the classroom.
         </p>
@@ -9094,8 +8850,8 @@ id="experienceHariffManufacturing">
 
     <div class="organizationImage">
 
-       <img
-        src="assets/PDA3.JPG"
+        <img
+            src="assets/PDA3.jpg"
             alt="Telkom University Endowment Fund Volunteer"
         >
 
@@ -9830,12 +9586,12 @@ id="experienceHariffManufacturing">
     >
 
     <img
-        src="assets/PDA2.JPG"
+        src="assets/PDA2.jpg"
         alt="PDA 2025 Documentation"
     >
 
     <img
-        src="assets/PDA3.JPG"
+        src="assets/PDA3.jpg"
         alt="PDA 2025 Documentation"
     >
 
@@ -10016,7 +9772,7 @@ id="experienceHariffManufacturing">
 
                 <h2 class="reveal">Skills</h2>
 
-                <p class="reveal">
+                <p>
                     Focused on capabilities relevant to industrial electrical
                     engineering and heavy-current environments.
                 </p>
@@ -10555,11 +10311,90 @@ id="experienceHariffManufacturing">
      CONTACT
 ========================================================= -->
 
+<!-- PROJECT 06 -->
+<div class="projectModal" id="pkmProject">
+    <div class="projectModalContent">
+        <button
+            class="closeProject"
+            onclick="closeProject('pkmProject')"
+            aria-label="Close"
+        >×</button>
+
+        <div class="kicker">MARCH – AUGUST 2026</div>
+
+        <h2>
+            Functional Water Irrigation System
+            (Water Ionizer)
+        </h2>
+
+        <p class="modalMeta">
+            Community Service Project — Electrical Engineering
+        </p>
+
+        <div class="pkmGallery">
+            <a href="assets/Abdimas1." target="_blank">
+                <img src="assets/pkm-01.jpeg" alt="PkM documentation — functional water irrigation system">
+            </a>
+            <a href="assets/pkm-02.jpeg" target="_blank">
+                <img src="assets/pkm-02.jpeg" alt="PkM documentation — installation and implementation">
+            </a>
+            <a href="assets/pkm-03.jpeg" target="_blank">
+                <img src="assets/pkm-03.jpeg" alt="PkM documentation — system testing and field activity">
+            </a>
+            <a href="assets/pkm-04.jpeg" target="_blank">
+                <img src="assets/pkm-04.jpeg" alt="PkM documentation — training and mentoring">
+            </a>
+        </div>
+
+        <h3>Overview</h3>
+        <p>
+            A community service project focused on implementing a functional-water
+            irrigation system for siamese pumpkin farming at Kelompok Tani Al Musthafa,
+            Kampung Cipulus, Desa Mandalasari, Cikancung, Kabupaten Bandung. The system
+            uses a water ionizer to produce functional water for plant watering and
+            periodic sanitation.
+        </p>
+
+        <h3>My Contribution</h3>
+        <p>
+            As a student team member, participated in project activities covering initial
+            observation and discussion, system design, installation, testing, training
+            and mentoring, and monitoring and evaluation with the partner.
+        </p>
+
+        <h3>Technical System</h3>
+        <p>
+            The proposed system combines a water ionizer, water tank, pump, piping,
+            and sprinkler or drip irrigation. The water source can be supplied from
+            PLTS or PLN, while electrolysis in the water ionizer produces alkaline and
+            acidic water for different application purposes.
+        </p>
+
+        <h3>Technical Focus</h3>
+        <div class="tags">
+            <span class="tag">Water Ionizer</span>
+            <span class="tag">Irrigation</span>
+            <span class="tag">Pump &amp; Piping</span>
+            <span class="tag">Appropriate Technology</span>
+            <span class="tag">Energy Integration</span>
+            <span class="tag">Field Implementation</span>
+        </div>
+
+        <h3>Team &amp; Collaboration</h3>
+        <p>
+            Conducted as a community service activity with lecturers and student
+            members from Electrical Engineering, in collaboration with Kelompok Tani
+            Al Musthafa as the partner.
+        </p>
+    </div>
+</div>
+
+
 <section id="contact" class="contactSection">
 
     <div class="sectionHead">
 
-        <h2 class="reveal">
+        <h2>
                       Contact Me
         </h2>
 
@@ -11752,108 +11587,6 @@ document
         revealObserver.observe(element);
     });
 
-    /* =========================
-   SKILLS STAGGER ANIMATION
-   ========================= */
-
-const skillCards = document.querySelectorAll(".skillsGrid > .card");
-
-const skillObserver = new IntersectionObserver(
-    function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("skills-ready");
-                skillObserver.unobserve(entry.target);
-            }
-        });
-    },
-    {
-        threshold: 0.2
-    }
-);
-
-skillCards.forEach(function(card) {
-    skillObserver.observe(card);
-});
-
-/* =========================
-   HERO TYPING ANIMATION
-   ========================= */
-
-const typingText = document.getElementById("typingText");
-
-if (typingText) {
-    const typingWords = [
-        "Electrical Engineering Student",
-        "Power Systems Enthusiast",
-        "Industrial Electrical Enthusiast",
-        "Energy & Oil & Gas Enthusiast"
-    ];
-
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function typeEffect() {
-        const currentWord = typingWords[wordIndex];
-
-        if (!isDeleting) {
-            typingText.textContent =
-                currentWord.substring(0, charIndex + 1);
-
-            charIndex++;
-
-            if (charIndex === currentWord.length) {
-                isDeleting = true;
-                setTimeout(typeEffect, 1800);
-                return;
-            }
-
-            setTimeout(typeEffect, 65);
-        } else {
-            typingText.textContent =
-                currentWord.substring(0, charIndex - 1);
-
-            charIndex--;
-
-            if (charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % typingWords.length;
-
-                setTimeout(typeEffect, 400);
-                return;
-            }
-
-            setTimeout(typeEffect, 35);
-        }
-    }
-
-    typeEffect();
-}
-
-/* =========================
-   ABOUT TYPING ANIMATION
-   ========================= */
-
-const aboutTyping = document.getElementById("aboutTyping");
-
-if (aboutTyping) {
-    const aboutText =
-        "I am developing practical skills in electrical systems, power distribution, wiring, testing, troubleshooting, instrumentation, and engineering documentation. I am especially interested in industrial and energy environments where electrical engineering is applied directly in the field.";
-
-    let aboutIndex = 0;
-
-    function typeAboutText() {
-        if (aboutIndex < aboutText.length) {
-            aboutTyping.textContent += aboutText.charAt(aboutIndex);
-            aboutIndex++;
-
-            setTimeout(typeAboutText, 22);
-        }
-    }
-
-    typeAboutText();
-}
 </script>
 
 </body>
